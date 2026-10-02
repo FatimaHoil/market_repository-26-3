@@ -1,6 +1,10 @@
 package com.tecnm.merida.marketbackendv2263.persistence.entity;
 import jakarta.persistence.*;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
 @Entity
 @Table(name = "categorias")
 public class Categoria {
@@ -10,9 +14,23 @@ public class Categoria {
     @Column(name = "id_categoria")
     private Integer idCategoria;
 
+    @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "estado")
     private Boolean estado;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
+
+    public Categoria() {
+    }
+
+    public Categoria(Integer idCategoria, String descripcion, Boolean estado) {
+        this.idCategoria = idCategoria;
+        this.descripcion = descripcion;
+        this.estado = estado;
+    }
 
     public Integer getIdCategoria() {
         return idCategoria;
